@@ -1,4 +1,4 @@
-const THEME_KEY = 'hiragana_theme';
+const THEME_KEY = 'theme';
 
 export function saveTheme(theme) {
   localStorage.setItem(THEME_KEY, theme);
@@ -13,54 +13,25 @@ export function clearAllData() {
 }
 
 export function renderSettings(container) {
+  const currentTheme = localStorage.getItem(THEME_KEY) || 'light';
   container.innerHTML = `
-    <h3 class="text-lg font-bold mb-4">Settings</h3>
-    <div class="form-control">
-      <label class="label">
-        <span class="label-text">Theme</span>
-      </label>
-      <select id="themeSelect" class="select select-bordered">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="cupcake">Cupcake</option>
-        <option value="bumblebee">Bumblebee</option>
-        <option value="emerald">Emerald</option>
-        <option value="corporate">Corporate</option>
-        <option value="synthwave">Synthwave</option>
-        <option value="retro">Retro</option>
-        <option value="cyberpunk">Cyberpunk</option>
-        <option value="valentine">Valentine</option>
-        <option value="halloween">Halloween</option>
-        <option value="garden">Garden</option>
-        <option value="forest">Forest</option>
-        <option value="aqua">Aqua</option>
-        <option value="pastel">Pastel</option>
-        <option value="fantasy">Fantasy</option>
-        <option value="wireframe">Wireframe</option>
-        <option value="black">Black</option>
-        <option value="luxury">Luxury</option>
-        <option value="dracula">Dracula</option>
-        <option value="cmyk">CMYK</option>
-        <option value="autumn">Autumn</option>
-        <option value="business">Business</option>
-        <option value="acid">Acid</option>
-        <option value="lemonade">Lemonade</option>
-        <option value="night">Night</option>
-        <option value="coffee">Coffee</option>
-        <option value="winter">Winter</option>
+    <div class="flex flex-col items-start justify-center gap-4 w-xs">
+      <h2 class="text-xl font-bold mb-4 w-xs">Settings</h2>
+      <select class="select select-neutral" onChange="setTheme(this.value)">
+        <option disabled>Pick a color</option>
+        <option value="light" ${currentTheme === 'light' ? 'selected' : ''}>Light</option>
+        <option value="dark" ${currentTheme === 'dark' ? 'selected' : ''}>Dark</option>
+        <option value="cupcake" ${currentTheme === 'cupcake' ? 'selected' : ''}>Cupcake</option>
+        <option value="valentine" ${currentTheme === 'valentine' ? 'selected' : ''}>Valentine</option>
+        <option value="lemonade" ${currentTheme === 'lemonade' ? 'selected' : ''}>Lemonade</option>
       </select>
-    </div>
-    <div class="form-control mt-4">
-      <button id="clearDataBtn" class="btn btn-error">Clear All Data</button>
+      <div class="form-control mt-4">
+        <button id="clearDataBtn" class="btn btn-error">
+          <span class="material-symbols-outlined mr-2">delete</span> Clear All Data
+        </button>
+      </div>
     </div>
   `;
-
-  const themeSelect = document.getElementById('themeSelect');
-  themeSelect.value = document.documentElement.getAttribute('data-theme') || 'light';
-  themeSelect.onchange = () => {
-    document.documentElement.setAttribute('data-theme', themeSelect.value);
-    localStorage.setItem('theme', themeSelect.value);
-  };
 
   document.getElementById('clearDataBtn').onclick = () => {
     if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {

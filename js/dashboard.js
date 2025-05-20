@@ -4,7 +4,7 @@ import { renderSettings } from './settings.js';
 export function renderDashboard(container) {
   container.innerHTML = `
     <div class="mb-4 flex justify-between items-center">
-      <h1 class="text-3xl font-bold text-primary">Hiragana Helper Dashboard</h1>
+      <h1 class="!text-3xl font-bold text-primary">Hiragana Helper Dashboard</h1>
       <button id="settingsBtn" class="btn btn-ghost btn-circle">
         <span class="material-symbols-outlined">settings</span>
       </button>
@@ -37,8 +37,8 @@ export function renderDashboard(container) {
       </button>
     </div>
     <dialog id="settingsModal" class="modal">
-      <div class="modal-box">
-        <div id="settingsContainer"></div>
+      <div class="modal-box w-content">
+        <div id="settingsContainer" class="w-content flex flex-col gap-4"></div>
       </div>
       <form method="dialog" class="modal-backdrop">
         <button>close</button>
