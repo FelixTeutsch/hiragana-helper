@@ -1,0 +1,55 @@
+/* Custom styles for Hiragana Helper */
+#app {
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+  background: var(--fallback-b1, #fff);
+  padding: 1rem;
+  max-width: 36rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hiragana-char {
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--fallback-p, #f472b6);
+  text-shadow: 0 2px 12px rgba(244, 114, 182, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  #app {
+    padding: 2rem;
+  }
+
+  .hiragana-char {
+    font-size: 7rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.stats-graph {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.playful-btn {
+  border-radius: 2rem;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  transition: transform 0.1s;
+}
+
+@media (min-width: 768px) {
+  .playful-btn {
+    font-size: 1.2rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
+.playful-btn:active {
+  transform: scale(0.97);
+}
